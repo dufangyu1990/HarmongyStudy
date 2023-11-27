@@ -1,7 +1,11 @@
+import router from '@ohos.router';
+import CommonConstant from '../common/constant/CommonConstant';
+
 @Component
 export default struct StudentListItem{
   @State isChecked:boolean = false;
   private name?:string;
+
 
   @Builder checkIcon(icon:Resource){
     Image(icon).objectFit(ImageFit.Contain)
@@ -24,6 +28,26 @@ export default struct StudentListItem{
         .fontWeight(500)
         .opacity(this.isChecked?0.5:1.0)
         .decoration({type:this.isChecked?TextDecorationType.LineThrough:TextDecorationType.None})
+
+      Blank()
+      Image($r('app.media.ic_arrow_next'))
+        .width('30vp')
+        .height('30vp')
+        .margin('30vp')
+        .onClick(()=>{
+          console.log('Next Click' + this.name);
+          router.pushUrl({
+            url:CommonConstant.STUDENT_DETAIL_URL,
+            params:{
+              //自定义参数
+              name:this.name
+            }
+          }).catch(()=>{
+            console.log('Next Click', 'IndexPage push error');
+          })
+        })
+
+
     }
     .borderRadius(22)
     .backgroundColor($r('app.color.start_window_background'))
