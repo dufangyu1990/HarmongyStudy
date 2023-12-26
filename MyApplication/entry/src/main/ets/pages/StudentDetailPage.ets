@@ -6,7 +6,7 @@ struct StudentDetailPage{
   // 接收参数，UI跟着参数变化，所以用state修饰
   @State name:string=(router.getParams() as Record<string,string>)['name']
 
-  @State backMsg:string=this.name+"好帅";
+  backMsg:string=this.name+"好帅";
   aboutToAppear(){
     console.log(TAG, 'StudentDetailPage接收的参数是: ' + this.name);
   }
