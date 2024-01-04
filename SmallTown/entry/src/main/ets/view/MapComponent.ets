@@ -91,6 +91,8 @@ struct PositionGridView{
 
 @Component
 struct CustomPanel{
+  @State positionList:Array<PositionItem> = PositionList
+
   build(){
 
   }
